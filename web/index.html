@@ -32,14 +32,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h2 class="modal-title">Errores encontrados</h2>
+                        <h2 class="modal-title" id="msg_error">Errores encontrados</h2>
                     </div>
                     <div class="modal-body">
-                        <h2>Al menos una de sus respuestas es errada, por favor verifique</h2>
+                        <h2 id="msg_error_des">Al menos una de sus respuestas es errada, por favor verifique</h2>
                         <p id="erorres"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="msg_cerrar">Cerrar</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -55,7 +55,22 @@
 
                         <!-- page title -->
                         <div class="page-title">
-                            <h3>Certificado de ingresos y retenciones 2015</h3>
+                            <h3 id="msg_cir">Certificado de ingresos y retenciones 2015</h3>
+
+                            <div>
+                                <label id="msg_idioma">Seleccione su idioma</label> 
+                                <br/>
+                                <label>
+                                    <input type="radio" name="lang" value="es" checked/>
+                                    <img src="img/es_es.png">
+                                </label>
+                                <br/>
+                                <label>
+                                    <input type="radio" name="lang" value="en" />
+                                    <img src="img/us.png">
+                                </label>
+                            </div>
+
                         </div>                        
                         <!-- ./page title -->
 
@@ -68,13 +83,13 @@
                                         <li>
                                             <a href="#step-7">
                                                 <span class="stepNumber">1</span>
-                                                <span class="stepDesc">Datos personales<br /></span>
+                                                <span class="stepDesc" id="msg_datos_p">Datos personales<br /></span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#step-9">
                                                 <span class="stepNumber">2</span>
-                                                <span class="stepDesc">Cuenta bancaria<br /></span>
+                                                <span class="stepDesc" id="msg_cuenta_b">Cuenta bancaria<br /></span>
                                             </a>
                                         </li>  
                                     </ul>
@@ -82,14 +97,14 @@
                                     <div id="step-7">   
 
                                         <div class="form-group">
-                                            <label>Digite su c&eacute;dula</label>
+                                            <label id="msg_cedula">Digite su c&eacute;dula</label>
                                             <br/>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Fecha de nacimiento</label>
+                                            <label id="msg_fecha_n">Fecha de nacimiento</label>
                                             <br/>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control datepicker" id="fnacimiento" name="fnacimiento" placeholder="fecha de nacimiento"/>
@@ -98,14 +113,14 @@
                                     </div>
                                     <div id="step-9">
                                         <div class="form-group">
-                                            <label>Numero de cuenta bancaria</label>
+                                            <label id="msg_numero_c">Numero de cuenta bancaria</label>
                                             <br/>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" name="numerocuenta" id="numerocuenta" placeholder="Numero de cuenta bancaria"/>
                                             </div>
                                         </div> 
                                         <div class="form-group">
-                                            <label>Banco</label>
+                                            <label id="msg_banco">Banco</label>
                                             <br/>
                                             <div class="col-md-8">
                                                 <select class="form-control" name="banco" id="banco">
@@ -115,6 +130,7 @@
                                                     <option value="BANCO DE BOGOTA">BANCO DE BOGOTA</option>
                                                     <option value="COLPATRIA">COLPATRIA</option>
                                                     <option value="BBVA">BBVA</option>
+                                                    <option value="KGM">KGM</option>
                                                 </select>
 
                                             </div>
@@ -141,7 +157,9 @@
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>                
         <script type="text/javascript" src="js/jquery.smartWizard.js"></script>
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.i18n.properties.min.js"></script>
         <script type="text/javascript" src="js/dev-app.js"></script>
+
 
 
 

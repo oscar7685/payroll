@@ -133,8 +133,59 @@ var smartWizard = {
     }
 }; //./start smart wizard
 
+function loadBundles(lang) {
+    jQuery.i18n.properties({
+        name: 'Messages',
+        path: 'bundle/',
+        mode: 'map',
+        language: lang,
+        callback: function () {
+            updateExamples();
+        }
+    });
+}
+
+function updateExamples() {
+    // Accessing values through the map
+    var ex1 = 'msg_datos_p';
+    var ex2 = 'msg_cuenta_b';
+    var ex3 = 'msg_cedula';
+    var ex4 = 'msg_numero_c';
+    var ex5 = 'msg_banco';
+    var ex6 = 'msg_fecha_n';
+    var ex7 = 'msg_anterior';
+    var ex8 = 'msg_siguiente';
+    var ex9 = 'msg_finalizar';
+    var ex10 = 'msg_cir';
+    var ex11 = 'msg_error';
+    var ex12 = 'msg_error_des';
+    var ex13 = 'msg_cerrar';
+    $('#msg_datos_p').empty().append(jQuery.i18n.prop(ex1));
+    $('#msg_cuenta_b').empty().append(jQuery.i18n.prop(ex2));
+    $('#msg_cedula').empty().append(jQuery.i18n.prop(ex3));
+    $('#msg_numero_c').empty().append(jQuery.i18n.prop(ex4));
+    $('#msg_banco').empty().append(jQuery.i18n.prop(ex5));
+    $('#msg_fecha_n').empty().append(jQuery.i18n.prop(ex6));
+    $('#msg_anterior').empty().append(jQuery.i18n.prop(ex7));
+    $('#msg_siguiente').empty().append(jQuery.i18n.prop(ex8));
+    $('#msg_finalizar').empty().append(jQuery.i18n.prop(ex9));
+    $('#msg_cir').empty().append(jQuery.i18n.prop(ex10));
+    $('#msg_error').empty().append(jQuery.i18n.prop(ex11));
+    $('#msg_error_des').empty().append(jQuery.i18n.prop(ex12));
+    $('#msg_cerrar').empty().append(jQuery.i18n.prop(ex13));
+
+}
+
 
 $(function () {
 
     smartWizard.init();
+    loadBundles('es');
+    
+    $("input[name=lang]:radio").change(function () {
+        loadBundles($(this).val());
+    });
+    
 });
+
+

@@ -55,6 +55,7 @@ public class sqlConnection {
     public void conectarMySQL() {
         String maquina = "127.0.0.1";
         String nombreBD = "payroll";
+      //  String nombreBD = "certific_payroll";
         String usuario = "root";
         String clave = "123456";
        

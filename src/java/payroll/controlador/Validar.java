@@ -58,10 +58,7 @@ public class Validar extends HttpServlet {
                 try {
                     while (rs.next()) {
 
-                        nombreArchivo = rs.getString(5);
                         cedula = rs.getString(1);
-                        System.out.println("cedula: " + cedula);
-                        System.out.println("nombreArchivo: " + nombreArchivo);
                         rsCount++;
                     }
                 } catch (SQLException ex) {
@@ -73,7 +70,7 @@ public class Validar extends HttpServlet {
                 } else {
                     try {
                         String ruta = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/payroll/pdfs/");
-                        ruta += "\\" + nombreArchivo;
+                        ruta += "\\" + cedula+".pdf";
 
                         File f2 = new File(ruta);
                         FileInputStream inStream = new FileInputStream(f2);
