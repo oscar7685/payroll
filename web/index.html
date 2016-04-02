@@ -2,7 +2,7 @@
 <html lang="en">
     <head>        
         <!-- meta section -->
-        <title>Intuitive - Admin Dashboard Template</title>
+        <title>Payroll</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
         <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -12,7 +12,9 @@
         <!-- /meta section -->
 
         <!-- css styles -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/blue-white.css" id="dev-css">
+
         <!-- ./css styles -->                                     
 
         <!--[if lte IE 9]>
@@ -24,7 +26,24 @@
         <style>.dev-page{visibility: hidden;}</style>
     </head>
     <body>
-
+        <!-- ./javascript -->
+        <div class="modal fade" id="myModal" data-backdrop="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-title">Errores encontrados</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Al menos una de sus respuestas es errada, por favor verifique</h2>
+                        <p id="erorres"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         <!-- page wrapper -->
         <div class="dev-page">
             <!-- page container -->
@@ -42,25 +61,19 @@
 
                         <!-- Wizard with validation -->
                         <div class="wrapper wrapper-white">
-                           
-                            <form action="javascript:alert('Validated!');" role="form" class="form-horizontal" id="wizard-validation">
+
+                            <form action="Validar" role="form" method="post" class="form-horizontal" id="wizard-validation">
                                 <div class="wizard show-submit wizard-validation">
                                     <ul>
                                         <li>
                                             <a href="#step-7">
                                                 <span class="stepNumber">1</span>
-                                                <span class="stepDesc">Cedula<br /></span>
+                                                <span class="stepDesc">Datos personales<br /></span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#step-8">
-                                                <span class="stepNumber">2</span>
-                                                <span class="stepDesc">Ultimo cargo<br /></span>
-                                            </a>
-                                        </li>   
-                                        <li>
                                             <a href="#step-9">
-                                                <span class="stepNumber">3</span>
+                                                <span class="stepNumber">2</span>
                                                 <span class="stepDesc">Cuenta bancaria<br /></span>
                                             </a>
                                         </li>  
@@ -72,61 +85,38 @@
                                             <label>Digite su c&eacute;dula</label>
                                             <br/>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="cedula" placeholder="Cedula"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha de expedición de la cedula</label>
-                                            <br/>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control datepicker" name="fexpedicion" placeholder="fecha de expedicion"/>
+                                                <input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Fecha de nacimiento</label>
                                             <br/>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control datepicker" name="fnacimiento" placeholder="fecha de nacimiento"/>
+                                                <input type="text" class="form-control datepicker" id="fnacimiento" name="fnacimiento" placeholder="fecha de nacimiento"/>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="step-8">
-
-                                        <div class="form-group">
-                                            <label>Ultimo cargo</label>
-                                            <br/>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" name="name" placeholder="Ultimo cargo"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha inicio contrato</label>
-                                            <br/>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control datepicker" name="finicio" placeholder="Fecha inicio contrato"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha final contrato</label>
-                                            <br/>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control datepicker" name="ffinal" placeholder="Fecha final contrato"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>C&oacute;digo KG</label>
-                                            <br/>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" name="codigoKG" placeholder="C&oacute;digo KG"/>
-                                            </div>
-                                        </div> 
                                     </div>
                                     <div id="step-9">
                                         <div class="form-group">
                                             <label>Numero de cuenta bancaria</label>
                                             <br/>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="numerocuenta" placeholder="Numero de cuenta bancaria"/>
+                                                <input type="text" class="form-control" name="numerocuenta" id="numerocuenta" placeholder="Numero de cuenta bancaria"/>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Banco</label>
+                                            <br/>
+                                            <div class="col-md-8">
+                                                <select class="form-control" name="banco" id="banco">
+                                                    <option value=""></option>
+                                                    <option value="BANCOLOMBIA">BANCOLOMBIA</option>
+                                                    <option value="DAVIVIENDA">DAVIVIENDA</option>
+                                                    <option value="BANCO DE BOGOTA">BANCO DE BOGOTA</option>
+                                                    <option value="COLPATRIA">COLPATRIA</option>
+                                                    <option value="BBVA">BBVA</option>
+                                                </select>
+
                                             </div>
                                         </div> 
                                     </div> 
@@ -150,8 +140,11 @@
         <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>                
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>                
         <script type="text/javascript" src="js/jquery.smartWizard.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/dev-app.js"></script>
 
-        <!-- ./javascript -->
+
+
     </body>
 </html>
+<!-- Modal -->
